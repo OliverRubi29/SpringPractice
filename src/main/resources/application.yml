@@ -2,6 +2,6 @@ spring:
   data:
     cassandra:
       port: 9042
-      contact-points: cassandara-node
+      contact-points: mycassandra
       keyspace-name: kuwago
       entity-based-package: com.kuwago.demo.model
