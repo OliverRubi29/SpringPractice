@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,8 +36,17 @@ public class NoteController {
     }
 
     @GetMapping("/notes")
-    public ResponseEntity<List<Note>> getAllNotes() {
-        List<Note> noteList = noteService.getAllNotes();
+    public ResponseEntity<List<Note>> getAllNotes(@RequestParam(required = false) String title) {
+        List<Note> noteList = new ArrayList<>();
+        if (title == null)
+            noteService.getAllNotes().forEach(noteList::add);
+        else
+            noteService.getNoteByTitle(title).forEach(noteList::add);
+
+        if (noteList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         return new ResponseEntity<>(noteList, HttpStatus.OK);
     }
 

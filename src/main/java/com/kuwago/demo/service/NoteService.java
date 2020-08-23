@@ -20,4 +20,6 @@ public interface NoteService {
 
     void deleteAllNotes();
 
+    List<Note> getNoteByTitle(String title);
+
 }

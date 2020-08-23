@@ -59,4 +59,11 @@ public class NoteServiceImpl implements NoteService {
     public void deleteAllNotes() {
         noteRepository.deleteAll();
     }
+
+    @Override
+    public List<Note> getNoteByTitle(String title) {
+        return noteRepository.findByTitleContaining(title);
+    }
+
+
 }
