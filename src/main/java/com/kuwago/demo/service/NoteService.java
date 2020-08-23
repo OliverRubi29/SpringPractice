@@ -18,5 +18,6 @@ public interface NoteService {
 
     Note updateNote(UUID id, Note note);
 
+    void deleteAllNotes();
 
 }

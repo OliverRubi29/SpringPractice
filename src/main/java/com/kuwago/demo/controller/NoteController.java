@@ -23,8 +23,8 @@ public class NoteController {
     }
 
     @PostMapping("/notes")
-    public Note addNote(@RequestBody Note note) {
-        return noteService.addNote(note);
+    public ResponseEntity<Note> addNote(@RequestBody Note note) {
+        return new ResponseEntity<>(noteService.addNote(note), HttpStatus.OK);
     }
 
     @GetMapping("/notes/{id}")
@@ -56,5 +56,10 @@ public class NoteController {
         return new ResponseEntity<>(noteService.updateNote(id, note), HttpStatus.OK);
     }
 
+    @DeleteMapping("/notes")
+    public ResponseEntity<HttpStatus> deleteAllNotes() {
+        noteService.deleteAllNotes();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }

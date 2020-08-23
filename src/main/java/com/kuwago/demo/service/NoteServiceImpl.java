@@ -28,7 +28,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public List<Note> getAllNotes() {
-        List<Note> notes = new ArrayList<Note>();
+        List<Note> notes = new ArrayList<>();
         noteRepository.findAll().forEach(notes::add);
         return notes;
     }
@@ -49,9 +49,14 @@ public class NoteServiceImpl implements NoteService {
         return toUpdate.map(note -> {
                     note.setTitle(update.getTitle());
                     note.setText(update.getText());
-                    note.setDate(update.getDate());
+                    note.setTimestamp(update.getTimestamp());
                     return noteRepository.save(note);
         }
         ).orElseGet(null);
+    }
+
+    @Override
+    public void deleteAllNotes() {
+        noteRepository.deleteAll();
     }
 }
