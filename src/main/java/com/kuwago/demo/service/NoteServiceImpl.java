@@ -49,6 +49,7 @@ public class NoteServiceImpl implements NoteService {
         return toUpdate.map(note -> {
                     note.setTitle(update.getTitle());
                     note.setText(update.getText());
+                    note.setDate(update.getDate());
                     return noteRepository.save(note);
         }
         ).orElseGet(null);

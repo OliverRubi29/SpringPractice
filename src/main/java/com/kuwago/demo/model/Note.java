@@ -3,6 +3,7 @@ package com.kuwago.demo.model;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Table
@@ -14,6 +15,16 @@ public class Note {
     private String title;
 
     private String text;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
 
     @Override
     public String toString() {
@@ -48,9 +59,10 @@ public class Note {
         this.text = text;
     }
 
-    public Note(UUID id, String title, String text) {
+    public Note(UUID id, String title, String text, Date date) {
         this.id = id;
         this.title = title;
         this.text = text;
+        this.date = date;
     }
 }
